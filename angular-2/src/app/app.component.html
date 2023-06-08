@@ -1,0 +1,44 @@
+<div *ngIf="showJoinScreen">
+  <app-join-screen
+    [participantName]="participantName"
+    (joinMeeting)="joinMeeting()"
+    (changeName)="changeName($event)"
+  ></app-join-screen>
+</div>
+<div *ngIf="showMeetingScreen">
+  <!-- topbar STart -->
+  <app-top-bar
+    [participantName]="participantName"
+    [showTopBar]="showTopBar"
+    [disableWebcamBtn]="disableWebcamBtn"
+    [enableWebcamBtn]="enableWebcamBtn"
+    [disableMicBtn]="disableMicBtn"
+    [enableMicBtn]="enableMicBtn"
+    (disableWebcam)="disableWebcam()"
+    (enableWebcam)="enableWebcam()"
+    (muteMic)="muteMic()"
+    (unmuteMic)="unmuteMic()"
+    (leaveMeeting)="leaveMeeting()"
+  ></app-top-bar>
+  <!-- topbar End -->
+
+  <!-- Meeting Container -->
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      max-height: calc(100vh - 80px);
+    "
+  >
+    <div class="container">
+      <div
+        #participantGridContainer
+        id="participant-grid-container"
+        class="row"
+      ></div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
