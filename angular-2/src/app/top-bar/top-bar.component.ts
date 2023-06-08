@@ -16,7 +16,7 @@ export class TopBarComponent {
   @Output() muteMic = new EventEmitter();
   @Output() unmuteMic = new EventEmitter();
   @Output() leaveMeeting = new EventEmitter();
-  @Input() participantName: string = '';
+  @Input() meetingId: string = '';
 
   constructor() {}
 

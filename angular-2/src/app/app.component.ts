@@ -14,9 +14,15 @@ export class AppComponent {
   title = 'videosdk-angular2-rtc-demo';
   meeting: any;
   participantName: string = '';
+  meetingId: string = '';
+  isCreatedMeetingClicked: boolean = false;
+  isJoinedMeetingClicked: boolean = false;
+  showMeetingIdError: boolean = false;
+  showParticipantNameError: boolean = false;
   showJoinScreen: boolean = true;
   showMeetingScreen: boolean = false;
   showTopBar: boolean = false;
+
   localParticipant: any;
   participants: any[] = [];
   enableWebcamBtn: boolean = false;
@@ -34,49 +40,71 @@ export class AppComponent {
     this.participantName = 'Homi J. Bhabha';
   }
 
+  public handleNameValidation() {
+    if (this.participantName.length < 3) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   createMeeting() {
+    this.isCreatedMeetingClicked = true;
     this.meetingService.createMeeting().subscribe(
       (roomId) => {
-        console.log('Meeting created with roomId:', roomId);
-        // Handle the roomId as needed
+        this.meetingId = roomId;
       },
       (error) => {
         console.error('Failed to create meeting:', error);
-        // Handle the error
       }
     );
   }
 
+  validateMeeting(meetingId: any) {
+    this.meetingService.validateMeeting(meetingId).subscribe(
+      (isValid) => {
+        if (isValid) {
+          this.showMeetingIdError = false;
+          this.meetingId = meetingId;
+          this.startMeeting();
+        } else {
+          this.showMeetingIdError = true;
+        }
+      },
+      (error) => {
+        console.error('Failed to validate meeting:', error);
+        // Handle the error
+      }
+    );
+  }
   public changeName(name: any): void {
     this.participantName = name;
   }
 
-  // joinMeetingAPI() {
-  //   this.meetingService.joinMeeting(environment.meetingId).subscribe(
-  //     (token) => {
-  //       console.log('Meeting joined with token:', token);
-  //       // Handle the token as needed
-  //     },
-  //     (error) => {
-  //       console.error('Failed to join meeting:', error);
-  //       // Handle the error
-  //     }
-  //   );
-  // }
-
-  async initMeeting() {
-    VideoSDK.config(environment.token);
-
-    this.meeting = VideoSDK.initMeeting({
-      meetingId: environment.meetingId, // required
-      name: this.participantName, // required
-      micEnabled: true, // optional, default: true
-      webcamEnabled: true, // optional, default: true
-      maxResolution: 'hd', // optional, default: "hd"
-    });
+  joinMeeting() {
+    this.isJoinedMeetingClicked = true;
   }
 
-  joinMeeting() {
+  async initMeeting() {
+    const isNameValid = this.handleNameValidation();
+
+    if (isNameValid) {
+      this.showParticipantNameError = false;
+      VideoSDK.config(environment.token);
+
+      this.meeting = VideoSDK.initMeeting({
+        meetingId: this.meetingId, // required
+        name: this.participantName, // required
+        micEnabled: true, // optional, default: true
+        webcamEnabled: true, // optional, default: true
+        maxResolution: 'hd', // optional, default: "hd"
+      });
+    } else {
+      this.showParticipantNameError = true;
+    }
+  }
+
+  startMeeting() {
     this.initMeeting();
     this.meeting.join();
 
@@ -118,17 +146,13 @@ export class AppComponent {
       'style',
       'width: 100%; height: 100%;position: absolute;top: 0;left: 0;object-fit: cover;'
     );
-    // this.renderer.setAttribute(video, 'transform', "rotate('90')");
-    // this.renderer.setAttribute(video, 'border-radius', '10px');
     this.renderer.setProperty(video, 'srcObject', mediaStream);
-
     const videoElement = this.renderer.createElement('div');
     this.renderer.setAttribute(
       videoElement,
       'id',
       `video-container-${participant.id}`
     );
-
     this.renderer.setAttribute(
       videoElement,
       'style',

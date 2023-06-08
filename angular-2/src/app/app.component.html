@@ -1,14 +1,22 @@
 <div *ngIf="showJoinScreen">
   <app-join-screen
     [participantName]="participantName"
+    [meetingId]="meetingId"
+    [isCreatedMeetingClicked]="isCreatedMeetingClicked"
+    [isJoinedMeetingClicked]="isJoinedMeetingClicked"
+    [showMeetingIdError]="showMeetingIdError"
+    [showParticipantNameError]="showParticipantNameError"
+    (createMeeting)="createMeeting()"
     (joinMeeting)="joinMeeting()"
+    (startMeeting)="startMeeting()"
     (changeName)="changeName($event)"
+    (validateMeeting)="validateMeeting($event)"
   ></app-join-screen>
 </div>
 <div *ngIf="showMeetingScreen">
   <!-- topbar STart -->
   <app-top-bar
-    [participantName]="participantName"
+    [meetingId]="meetingId"
     [showTopBar]="showTopBar"
     [disableWebcamBtn]="disableWebcamBtn"
     [enableWebcamBtn]="enableWebcamBtn"

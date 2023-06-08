@@ -27,75 +27,56 @@
       <h3 style="text-align: center">AngularJS quickstart with Videosdk</h3>
       <form name="myForm">
         <div style="display: flex; flex-direction: column">
-          <span>name</span>
-          <input
-            style="
-              margin-top: 8px;
-              width: 95%;
-              border: 1px soild black;
-              color: black;
-              padding-top: 6px;
-              padding-bottom: 6px;
-              border-radius: 8px;
-              font-size: 16px;
-              padding-left: 8px;
-              padding-right: 8px;
-            "
-            name="participantName"
-            type="text"
-            [(ngModel)]="participantName"
-            (ngModelChange)="fireChangeName()"
-          />
+          <div *ngIf="isCreatedMeetingClicked || isJoinedMeetingClicked">
+            <span>name</span>
+            <input
+              class="join-screen-input"
+              name="participantName"
+              type="text"
+              [(ngModel)]="participantName"
+              (ngModelChange)="fireChangeName()"
+            />
+            <p *ngIf="showParticipantNameError" class="input-err">
+              Please enter atleast 3 characers
+            </p>
+          </div>
 
-          <!-- <div style="margin-top: 10px">
-              <span>meeting id</span>
-              <input
-                style="
-                  display: block;
-                  width: 100%;
-                  padding: 5px;
-                  border-radius: 2px;
-                  margin-top: 10px;
-                "
-                type="text"
-                ng-model="meetingId"
-              />
-            </div> -->
-          <div>
-            <!-- <button
-              style="
-                width: 100%;
-                background: #5977fb;
-                border: 0px;
-                color: white;
-                padding-top: 12px;
-                padding-bottom: 12px;
-                border-radius: 8px;
-                font-size: 16px;
-                padding-left: 50px;
-                padding-right: 50px;
-                cursor: pointer;
-              "
-            >
+          <div *ngIf="isJoinedMeetingClicked" style="margin-top: 10px">
+            <span>meetingId</span>
+            <input
+              class="join-screen-input"
+              name="meetingId"
+              type="text"
+              [(ngModel)]="meetingId"
+              (ngModelChange)="fireChangeName()"
+            />
+            <p *ngIf="showMeetingIdError" class="input-err">
+              Please enter valid meeting Id
+            </p>
+          </div>
+
+          <div *ngIf="isCreatedMeetingClicked">
+            <div style="margin-top: 8px">
+              <span>meetingId</span>
+              <p class="join-screen-p">{{ meetingId }}</p>
+            </div>
+          </div>
+
+          <div *ngIf="!isCreatedMeetingClicked && !isJoinedMeetingClicked">
+            <button class="join-screen-btn" (click)="fireCreateMeeting()">
               Create a meeting
-            </button> -->
-            <button
-              (click)="fireJoinMeeting()"
-              style="
-                margin-top: 12px;
-                width: 100%;
-                background: #5977fb;
-                border: 0px;
-                color: white;
-                padding-top: 12px;
-                padding-bottom: 12px;
-                border-radius: 8px;
-                font-size: 16px;
-                padding-left: 50px;
-                padding-right: 50px;
-                cursor: pointer;
-              "
-            >
+            </button>
+            <button (click)="fireJoinMeeting()" class="join-screen-btn">
+              Join a meeting
+            </button>
+          </div>
+          <div *ngIf="isCreatedMeetingClicked">
+            <button class="join-screen-btn" (click)="fireStartMeeting()">
+              Start a Meeting
+            </button>
+          </div>
+          <div *ngIf="isJoinedMeetingClicked">
+            <button (click)="fireValidateMeeting()" class="join-screen-btn">
               Join a meeting
             </button>
           </div>
