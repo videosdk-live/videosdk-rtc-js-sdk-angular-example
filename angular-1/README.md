@@ -200,13 +200,13 @@ If you want to learn more about the SDK, read the Complete Documentation of [Jav
 
 There are 3 folders and 1 file :
 
-1. [`app`](https://github.com/videosdk-live/videosdk-rtc-react-sdk-example/tree/main/src/meeting) - This folder includes `lib` folder that include `angular.min.js` file and `app.js` file for handling meeting related opeartions.
+1. [`app`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/tree/master/angular-1/app) - This folder includes `lib` folder that include `angular.min.js` file and `app.js` file for handling meeting related opeartions.
 
-2. [`content`]() - This folder include css files.
+2. [`content`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/tree/master/angular-1/content/css) - This folder include css files.
 
-3. [`views`]() - This folder include UI files like `Joinscreen` , `Meetingcontainer` and `Topbar`.
+3. [`views`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/tree/master/angular-1/views) - This folder include UI files like `Joinscreen` , `Meetingcontainer` and `Topbar`.
 
-4. [`index.html`] - This file include all views components.
+4. [`index.html`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/blob/master/angular-1/index.html) - This file include all views components.
 
 <br/>
 
@@ -214,7 +214,7 @@ There are 3 folders and 1 file :
 
 **1. Create or join Meeting**
 
-- [`views/joinScreen.html`]() : It shows the user with the option to meeting type and create or join a meeting and to initiate webcam and mic status.
+- [`views/joinScreen.html`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/blob/master/angular-1/views/joinScreen.html) : It shows the user with the option to meeting type and create or join a meeting and to initiate webcam and mic status.
 
 - `app.js` : It includes all the API calls for create and validate meeting.
 
@@ -239,11 +239,11 @@ There are 3 folders and 1 file :
   </p>
 
 **2. Topbar**
-[`views/topbar.html`]() - It contains meetingId , Disable/Enable Webcam , Disable/Enable Mic and Leave Meeting Button.
+[`views/topbar.html`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/blob/master/angular-1/views/topBar.html) - It contains meetingId , Disable/Enable Webcam , Disable/Enable Mic and Leave Meeting Button.
 
-**3. ParticipantGrid**
+**3. MeetingContainer**
 
-[`components/ParticipantGrid.js`]() - It contains the grid of participant that are displayed in the main screen.
+[`components/meetingContainer.html`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/blob/master/angular-1/views/meetingContainer.html) - It contains the grid of participant that are displayed in the main screen.
 
 <br/>
 

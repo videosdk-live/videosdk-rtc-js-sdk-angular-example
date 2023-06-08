@@ -207,9 +207,7 @@ If you want to learn more about the SDK, read the Complete Documentation of [Jav
 
 There are 1 folder :
 
-1. [`app`]() - This folder includes folders or files related to meeting.
-
-2. [`index.html`]() - This file include <app-root> directive to render meeting UI.
+1. [`app`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/tree/master/angular-2/src/app) - This folder includes folders or files related to meeting.
 
 <br/>
 
@@ -217,7 +215,7 @@ There are 1 folder :
 
 **1. Create or join Meeting**
 
-- [`app/join-screen/join-screen.component.html`]() : It shows the user with the option to meeting type and create or join a meeting and to initiate webcam and mic status.
+- [`app/join-screen/join-screen.component.html`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/blob/master/angular-2/src/app/join-screen/join-screen.component.html) : It shows the user with the option to meeting type and create or join a meeting and to initiate webcam and mic status.
 
 - `meeting.service.ts` : It includes all the API calls for create and validate meeting.
 
@@ -242,11 +240,11 @@ There are 1 folder :
   </p>
 
 **2. Topbar**
-[`app/top-bar/top-bar.component.html`]() - It contains meetingId , Disable/Enable Webcam , Disable/Enable Mic and Leave Meeting Button.
+[`app/top-bar/top-bar.component.html`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/blob/master/angular-2/src/app/top-bar/top-bar.component.html) - It contains meetingId , Disable/Enable Webcam , Disable/Enable Mic and Leave Meeting Button.
 
 **3. ParticipantGrid**
 
-[`app/app.component.html`]() - It contains joinScreen, topbar and grid of participant that are displayed in the main screen.
+[`app/app.component.html`](https://github.com/videosdk-live/videosdk-rtc-js-sdk-angular-example/blob/master/angular-2/src/app/app.component.html) - It contains joinScreen, topbar and grid of participant that are displayed in the main screen.
 
 <br/>
 
