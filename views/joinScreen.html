@@ -1,0 +1,53 @@
+<div id="joinPage" class="main-bg" style="display: flex" ng-controller="myController">
+  <div style="margin: auto; display: flex; align-items: center">
+    <div class="join-left">
+      <video class="join-left video" id="videoElement" playsinline autoplay></video>
+    </div>
+    <div style="width: 350px">
+      <h3 style="text-align: center">AngularJS quickstart with Videosdk</h3>
+      <form name="myForm">
+        <div>
+          <div ng-show="isCreatedMeetingClicked || isJoinMeetingClicked">
+            <span>name</span>
+            <input class="text-input" type="text" ng-model="name"/>
+            <p ng-show="showParticipantNameError" class="input-err">Please enter atleast 3 characers</p>
+          </div>
+
+          <div ng-show="isJoinMeetingClicked" style="margin-top: 10px">
+            <span>meeting id</span>
+            <input class="text-input" type="text" ng-model="meetingId"/>
+            <p ng-show="showMeetingIdError" class="input-err">Please enter valid meeting Id</p>
+          </div>
+
+          <div ng-show="isCreatedMeetingClicked" style="margin-top: 10px">
+            <span>meeting id</span>
+            <div class="text-div">
+              <p style="margin: 0px; font-size: 14px;font-weight: 500;">{{meetingId}}</p>
+            </div>
+          </div>
+          <div ng-show="!isJoinMeetingClicked && !isCreatedMeetingClicked">
+            <div>
+              <button class="btn secondary text-white" id="meetingJoinButton" ng-click="joinMeeting()">
+                Join Meeting
+              </button>
+            </div>
+            <div>
+              <button class="btn secondary text-white"id="meetingCreateButton"ng-click="createMeeting()">
+                Create Meeting
+              </button>
+            </div>
+          </div>
+          <div ng-show="isCreatedMeetingClicked">
+            <button class="btn secondary text-white" id="meetingStartButton" ng-click="startMeeting()">
+              Start Meeting
+            </button>
+          </div>
+          <div ng-show="isJoinMeetingClicked">
+            <button class="btn secondary text-white" id="meetingJoinButton" ng-click="validateMeeting()">
+              Join Meeting
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
